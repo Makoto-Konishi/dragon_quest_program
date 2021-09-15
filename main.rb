@@ -1,11 +1,16 @@
 class Brave
 
-  # initializeメソッドを定義
-  def initialize
-    @name = "テリー"
-    @hp = 500
-    @offense = 150
-    @defense = 100
+  # paramsで一括で受け取る
+  # 引数に**を記述：ハッシュしか受け取れなくなる
+  def initialize(params)
+    puts params
+    #=> {:name=>"テリー", :hp=>500, :offense=>150, :defense=>100}
+
+    # 各パラメータをハッシュで取得
+    @name = params[:name]
+    @hp = params[:hp]
+    @offense = params[:offense]
+    @defense = params[:defense]
   end
 
   # nameのゲッター
@@ -46,7 +51,8 @@ class Brave
 
 end
 
-brave = Brave.new
+# キーワード引数で、initializeメソッドの引数がどのパラメータに渡しているのかわかりやすくする
+brave = Brave.new(name: 'テリー', hp: 500, offense: 150, defense: 100)
 
 # ヒアドキュメント putsや文字列を囲む""（ダブルクウォーテーション）を何度も書く必要がなくなる
 puts <<~TEXT
