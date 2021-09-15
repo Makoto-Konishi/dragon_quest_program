@@ -1,5 +1,13 @@
 class Brave
 
+  # initializeメソッドを定義
+  def initialize
+    @name = "テリー"
+    @hp = 500
+    @offense = 150
+    @defense = 100
+  end
+
   # nameのゲッター
   def name
     @name
@@ -39,11 +47,6 @@ class Brave
 end
 
 brave = Brave.new
-
-brave.name = "テリー"
-brave.hp = 500
-brave.offense = 150
-brave.defense = 100
 
 # ヒアドキュメント putsや文字列を囲む""（ダブルクウォーテーション）を何度も書く必要がなくなる
 puts <<~TEXT
