@@ -8,14 +8,25 @@ class Brave
   # paramsで一括で受け取る
   # 引数に**を記述：ハッシュしか受け取れなくなる
   def initialize(**params)
-    puts params
-    #=> {:name=>"テリー", :hp=>500, :offense=>150, :defense=>100}
-
     # 各パラメータをハッシュで取得
     @name = params[:name]
     @hp = params[:hp]
     @offense = params[:offense]
     @defense = params[:defense]
+  end
+
+  # 引数で攻撃対象のインスタンスを受け取る
+  def attack(monster)
+    # 攻撃者の名前
+    puts "#{@name}の攻撃"
+
+    # ダメージ計算(勇者の攻撃力 - モンスターの防御力)
+    damage = @offense - monster.defense
+    puts "#{@name}は#{monster.name}に#{damage}ダメージを与えた"
+
+    # 攻撃対象から計算したダメージを引く
+    monster.hp -= damage
+    puts "#{monster.name}の残りHPは#{monster.hp}だ"
   end
 end
 
@@ -35,21 +46,8 @@ end
 brave = Brave.new(name: 'テリー', hp: 500, offense: 150, defense: 100)
 monster = Monster.new(name: "スライム", hp: 250, offense: 200, defense: 100)
 
-# ヒアドキュメント putsや""を何度も書く必要がなくなる
-puts <<~TEXT
-  NAME:#{brave.name}
-  HP:#{brave.hp}
-  OFFENSE:#{brave.offense}
-  DEFENSE:#{brave.defense}
-TEXT
-brave.hp-=30
-puts "#{brave.name}の残りhpは#{brave.hp}です"
+# 勇者の攻撃
+brave.attack(monster)
 
-puts <<~TEXT
-  NAME:#{monster.name}
-  HP:#{monster.hp}
-  OFFENSE:#{monster.offense}
-  DEFENSE:#{monster.defense}
-TEXT
 
 
